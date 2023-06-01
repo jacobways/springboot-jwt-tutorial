@@ -21,6 +21,8 @@ import java.util.Date;
 import java.util.stream.Collectors;
 
 @Component
+// InitializeBean : Bean이 컨테이너에 의해 의존성이 설정된 후 초기화 작업을 할 수 있도록 Spring이 제공하는 인터페이스
+  // afterPropertiesSet() 메소드 : 모든 bean 속성이 설정된 후 컨테이너에 의해 자동으로 호출됨
 public class TokenProvider implements InitializingBean {
 
     private final Logger logger = (Logger) LoggerFactory.getLogger(TokenProvider.class);
@@ -30,7 +32,7 @@ public class TokenProvider implements InitializingBean {
     private Key key;
 
     public TokenProvider(
-            @Value("${jwt.secret}") String secret,
+            @Value("${jwt.secret}") String secret, // application.yml 파일의 jwt.secret 값이 secret 변수의 값으로 할당됨
             @Value("${jwt.token-validity-in-seconds}") long tokenValidityInSeconds) {
         this.secret = secret;
         this.tokenValidityInMilliseconds = tokenValidityInSeconds * 1000;

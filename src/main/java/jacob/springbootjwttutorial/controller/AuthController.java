@@ -30,6 +30,7 @@ public class AuthController {
         this.authenticationManagerBuilder = authenticationManagerBuilder;
     }
 
+    // @Valid는 authorize() 메서드의 loginDto 매개 변수에 적용되어 loginDto 객체의 유효성 검사 진행 - 오류 발생 시 MethodArgumentNotValidException 발생시킴
     @PostMapping("/authenticate")
     public ResponseEntity<TokenDto> authorize(@Valid @RequestBody LoginDto loginDto) {
 
